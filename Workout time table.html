@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workout Timetable</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e1e;
+      color: #fff;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #fff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: center;
+      color: #fff;
+    }
+    th {
+      background-color: #333;
+    }
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      background-color: #444;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    .workout-container {
+      margin-bottom: 30px;
+    }
+    #capture-btn {
+      display: block;
+      margin: 20px auto;
+      background-color: #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <h1>Workout Timetable</h1>
+
+  <div id="timetable">
+    <div class="workout-container" id="monday">
+      <h3>Monday</h3>
+      <button onclick="addWorkout('monday')">Add Workout</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Workout</th>
+            <th>Sets</th>
+            <th>Reps</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="workout-container" id="tuesday">
+      <h3>Tuesday</h3>
+      <button onclick="addWorkout('tuesday')">Add Workout</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Workout</th>
+            <th>Sets</th>
+            <th>Reps</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="workout-container" id="wednesday">
+      <h3>Wednesday</h3>
+      <button onclick="addWorkout('wednesday')">Add Workout</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Workout</th>
+            <th>Sets</th>
+            <th>Reps</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="workout-container" id="thursday">
+      <h3>Thursday</h3>
+      <button onclick="addWorkout('thursday')">Add Workout</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Workout</th>
+            <th>Sets</th>
+            <th>Reps</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="workout-container" id="friday">
+      <h3>Friday</h3>
+      <button onclick="addWorkout('friday')">Add Workout</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Workout</th>
+            <th>Sets</th>
+            <th>Reps</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <button id="capture-btn" onclick="captureTimetable()">Capture Timetable</button>
+
+  <canvas id="canvas" style="display:none;"></canvas>
+
+  <script>
+    function addWorkout(day) {
+      const workoutName = prompt("Enter workout name:");
+      const sets = prompt("Enter number of sets:");
+      const reps = prompt("Enter number of reps:");
+
+      if (workoutName && sets && reps) {
+        const tbody = document.querySelector(`#${day} table tbody`);
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${workoutName}</td><td>${sets}</td><td>${reps}</td>`;
+        tbody.appendChild(row);
+      }
+    }
+
+    function captureTimetable() {
+      html2canvas(document.body).then(function(canvas) {
+        const link = document.createElement('a');
+        link.download = 'workout-timetable.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+  </script>
+
+  <!-- Updated html2canvas library for capturing the screenshot -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>
